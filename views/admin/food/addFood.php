@@ -4,19 +4,22 @@ include '../../../includes/db.php'; // Adjust path if needed
 // If the "Submit" button was clicked
 if (isset($_POST['submit'])) {
 
-    // Get input values
-    $name = trim($_POST['name']);
-    $price = trim($_POST['price']);
-    $description = trim($_POST['description']);
+// Get input values
+$name = trim($_POST['name']);
+$price = trim($_POST['price']);
+$description = trim($_POST['description']);
 
-    // Insert into food_items table
-    $sql = "INSERT INTO food_items (name, description, price) VALUES ('$name', '$description', '$price')";
-    if ($conn->query($sql)) {
-        header("Location: food_dashboard.php"); // Back to food dashboard
-        exit();
-    } else {
-        echo "Error: " . $conn->error;
+// Insert into food_items table
+$sql = "INSERT INTO food_items (name, description, price) VALUES ('$name', '$description', '$price')";
+    
+// Redirect back to food_dashboard once finished
+if ($conn->query($sql)) {
+    header("Location: food_dashboard.php"); 
+    exit();
+} else {
+    echo "Error: " . $conn->error;
     }
+
 }
 ?>
 

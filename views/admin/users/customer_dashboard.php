@@ -27,14 +27,17 @@ $result = $conn->query($sql);
 <body>
 
     <h1>Customer Dashboard</h1>
+    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
+
 
     <!-- Navigation -->
-    <p>
-        <a href="../dashboard/admin_dashboard.php">Dashboard</a> |
-        <a href="customer_dashboard.php">Customers</a> |
-        <a href="../food/food_dashboard.php">Food Items</a> |
-        <a href="../../orders/orders.php">Orders</a> |
-        <a href="../../logout.php">Logout</a>
+    <p id="nav-bar">
+        <a href="../dashboard/admin_dashboard.php">Dashboard</a> 
+        <a href="../food/food_dashboard.php">Food Items</a> 
+        <a href="customer_dashboard.php">Customers</a> 
+        <a href="../orders/order_history_dashboard.php">Finished Orders</a> 
+        <a href="../../login/logout.php">Logout</a>
+
     </p>
 
     <!-- Search -->
@@ -49,7 +52,6 @@ $result = $conn->query($sql);
     <!-- Customers table -->
     <table border="1" cellpadding="10">
         <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Age</th>
             <th>Contact Number</th>
@@ -60,7 +62,6 @@ $result = $conn->query($sql);
         <?php if ($result->num_rows > 0): ?>
             <?php while ($customer = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?= $customer['id'] ?></td>
                     <td><?= htmlspecialchars($customer['name']) ?></td>
                     <td><?= $customer['age'] ?></td>
                     <td><?= htmlspecialchars($customer['contact_number']) ?></td>

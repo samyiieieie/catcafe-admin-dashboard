@@ -1,19 +1,23 @@
 <?php
+
+// Session Start
 session_start();
 include "../../../includes/db.php"; 
 
-// 1. Check if ID is provided
+// Check if ID is provided
 if (!isset($_GET['id'])) {
     die("Customer ID not specified.");
 }
 
+// Set $id to get id from db
 $id = intval($_GET['id']);
 
-// 2. Fetch the current customer
+// Set $result to get customers
 $result = $conn->query("SELECT * FROM customers WHERE id = $id");
 if ($result->num_rows == 0) {
     die("Customer not found.");
 }
+
 
 $customer = $result->fetch_assoc();
 
@@ -24,10 +28,12 @@ if (isset($_POST['update'])) {
     $contact_number = mysqli_real_escape_string($conn, $_POST['contact_number']);
     $current_address = mysqli_real_escape_string($conn, $_POST['current_address']);
 
-    $sql = "UPDATE customers 
+ // Change data in the Customers Table
+$sql = "UPDATE customers 
             SET name='$name', age=$age, contact_number='$contact_number', current_address='$current_address'
             WHERE id=$id";
 
+// If everything goes well, redirect to customer dashboard
     if ($conn->query($sql) === TRUE) {
         header("Location: customer_dashboard.php");
         exit();

@@ -27,14 +27,16 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
 <body>
 
     <h1>Food Items</h1>
+    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
+
 
     <!-- Navigation -->
-    <p>
-        <a href="../dashboard/admin_dashboard.php">Dashboard</a> |
-        <a href="food_dashboard.php">Food Items</a> |
-        <a href="../users/customer_dashboard.php">Customers</a> |
-        <a href="../../orders/orders.php">Orders</a> |
-        <a href="../../logout.php">Logout</a>
+    <p id="nav-bar">
+        <a href="../dashboard/admin_dashboard.php">Dashboard</a>
+        <a href="food_dashboard.php">Food Items</a>
+        <a href="../users/customer_dashboard.php">Customers</a>
+        <a href="../orders/order_history_dashboard.php">Finished Orders</a>
+        <a href="../../login/logout.php">Logout</a>
     </p>
 
     <!-- Search Bar -->
@@ -50,7 +52,6 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
     <!-- Food items table -->
     <table border="1" cellpadding="10">
         <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
@@ -59,10 +60,9 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
         <?php if ($result->num_rows > 0): ?>
             <?php while ($food = $result->fetch_assoc()): ?>
                 <tr>
-                    <td><?php echo $food['id']; ?></td>
                     <td><?php echo htmlspecialchars($food['name']); ?></td>
                     <td><?php echo htmlspecialchars($food['description']); ?></td>
-                    <td><?php echo number_format($food['price'], 2); ?></td>
+                    <td>₱<?php echo number_format($food['price'], 2); ?></td>
                     <td>
                         <a href="editFood.php?id=<?php echo $food['id']; ?>">Edit</a> |
                         <a href="deleteFood.php?id=<?php echo $food['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>

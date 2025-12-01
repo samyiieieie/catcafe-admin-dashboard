@@ -1,5 +1,7 @@
 <?php
-include '../../../includes/db.php'; // Adjust path if needed
+
+// Include Database
+include '../../../includes/db.php'; 
 
 $search = $_GET['search'] ?? '';
 $search = mysqli_real_escape_string($conn, $search);

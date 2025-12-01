@@ -34,11 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Redirect to admin dashboard
             header("Location: ../../views/admin/dashboard/admin_dashboard.php");
             exit();
-
         } else {
             $message = "Incorrect password!";
         }
-
     } else {
         $message = "User does not exist!";
     }
@@ -66,6 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Show message -->
     <p style="color:red;"><?php echo $message; ?></p>
+    
+    <script src="../../../script/login.js"></script>
 </body>
 
 </html>

@@ -22,12 +22,14 @@ if (isset($_POST['update'])) {
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
 
+    // set $sql to update the table
     $sql = "UPDATE food_items 
             SET name='$name', price='$price', description='$description'
             WHERE id=$id";
 
+    // if everything goes well, direct back to food dashboard
     if ($conn->query($sql) === TRUE) {
-        header("Location: food_dashboard.php"); // Back to food dashboard
+        header("Location: food_dashboard.php"); 
         exit;
     } else {
         echo "Error updating food item: " . $conn->error;
