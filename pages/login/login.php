@@ -50,17 +50,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loginstyle.css">
     <title>Admin Login</title>
 </head>
 
 <body>
-    <h2>Admin Login</h2>
-    <form method="post" action="">
+    <div class="navbar">
+        <img src="assets/logo.png" alt="Logo">
+    </div>
+
+    <div class=login-container> 
+        <div class="login-left">
+            <img src="assets/background.png"  class="background-img" alt="Background">
+            <div class="tagline">
+                <p> Your comfort in a cup... </p>
+                <p> with a purr </p>
+            </div>
+        </div>
+
+        <div class="login-right">
+            <h2>Admin Login</h2>
+            <form method="post" action="">
         <!-- Input Fields-->
-        <input type="text" name="username" placeholder="Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
+            <input type="text" name="username" placeholder="Username" required><br><br>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <button type="submit">Login</button>
+            </form>
+            </div>
+    </div>
 
     <!-- Show message -->
     <p style="color:red;"><?php echo $message; ?></p>

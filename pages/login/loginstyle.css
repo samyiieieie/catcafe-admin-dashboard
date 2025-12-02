@@ -1,0 +1,15 @@
+.navbar{
+    display: inline-flex;
+    padding: 12px 33px 12px 45px;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 957px;
+    background: linear-gradient(0deg, rgba(255, 251, 251, 0.30) 0%, rgba(255, 251, 251, 0.30) 100%), #FFF;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.background-img{
+    width: 919.334px;
+    height: 914px;
+}
+
