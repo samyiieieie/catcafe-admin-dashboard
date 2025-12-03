@@ -163,6 +163,11 @@ button {
   font-size: 16px;
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 button.outline {
@@ -187,6 +192,24 @@ button:hover {
   color: #fff;
 }
 
+/* NAVIGATION BUTTONS */
+a.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 500px;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+}
+
 /* BODY */
 main {
   padding: 30px 50px;
@@ -196,12 +219,14 @@ span.name {
   text-decoration: underline;
 }
 
+/* section */
 section.tables {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
 
+/* summary (left) */
 article.summary {
   display: flex;
   flex-direction: column;
@@ -210,7 +235,7 @@ article.summary {
 }
 
 article.summary .sales {
-  border: 1px solid #572908;
+  border: 2px solid #572908;
   background-color: #5d2121;
   border-radius: 30px;
   padding: 20px;
@@ -223,14 +248,21 @@ article.summary div .icon img {
 }
 
 article.summary .sales .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #fff;
   width: fit-content;
-  padding: 4px 8px;
+  padding: 8px;
   border-radius: 50px;
 }
 
 article.summary .summary-card {
-  border: 1px solid #572908;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 2px solid #572908;
   background-color: #fcead0;
   color: #572908;
   border-radius: 30px;
@@ -239,12 +271,105 @@ article.summary .summary-card {
 
 article.summary .summary-card .icon {
   background-color: #822e2e;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 50px;
+}
+
+article.summary .summary-name {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+article.summary p {
+  font-weight: 500;
 }
 
 article.summary p.card-info {
   font-size: 48px;
   font-weight: bold;
   font-family: "Baloo 2", sans-serif;
+}
+
+/* pending orders (right) */
+
+article.pending-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 2px solid #572908;
+  width: 75%;
+  border-radius: 30px;
+  padding: 20px 30px;
+}
+
+article.pending-orders .icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #822e2e;
+  width: fit-content;
+  padding: 12px;
+  border-radius: 50px;
+}
+
+article.pending-orders .icon img {
+  height: 28px;
+  width: 28px;
+}
+
+article.pending-orders button.outline.create-order {
+  width: max-content;
+}
+
+/* Finish button */
+a.finish-order {
+  border: 1px solid #822e2e;
+  background-color: #fff7eb;
+  color: #822e2e;
+}
+
+a.finish-order:hover {
+  background-color: #822e2e;
+  color: #fff7eb;
+}
+
+/* Delete button */
+a.delete-order {
+  background-color: #822e2e;
+  color: #fff7eb;
+}
+
+a.delete-order:hover {
+  background-color: #980909;
+  color: #fcead0;
+}
+
+/* TABLES */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: none;
+}
+
+table tr.row-border {
+  border-bottom: 1px solid #822e2e;
+  color: #822e2e;
+}
+
+table th,
+table td {
+  border: none;
+  padding: 12px 16px;
+  text-align: left;
+}
+
+table td.actions {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }
 
 /* LINKS */

@@ -41,18 +41,16 @@ $pending_orders = $conn->query("
 <body>
 
     <main>
-        <!-- Header -->
+        <!-- Header + Welcome Message with name column from DB -->
         <h1>Admin Dashboard</h1>
+        <h2>Welcome,
+            <span class="name">
+                <?php echo $_SESSION['name']; ?>
+            </span>
+            !
+        </h2>
         <section class="tables">
             <article class="summary">
-                <!-- Welcome Message with name column from DB-->
-                <h2>Welcome,
-                    <span class="name">
-                        <?php echo $_SESSION['name']; ?>
-                    </span>
-                    !
-                </h2>
-                <!-- Summary Table -->
                 <!-- Sales Summary -->
                 <div class="sales">
                     <div class="summary-name">
@@ -68,24 +66,42 @@ $pending_orders = $conn->query("
 
                 <!-- Orders Summary -->
                 <div class="summary-card">
-                    <!-- icon -->
-                    <p>Orders</p>
+                    <div class="summary-name">
+                        <div class="icon">
+                            <img src="../../../assets/icons/orders-icon.svg" alt="">
+                        </div>
+
+                        <p>Orders</p>
+                    </div>
+
                     <p class="card-info">
                         <?php echo $total_orders; ?>
                     </p>
                 </div>
                 <!-- Food Summary -->
                 <div class="summary-card">
-                    <!-- icon -->
-                    <p>Food Inventory</p>
+                    <div class="summary-name">
+                        <div class="icon">
+                            <img src="../../../assets/icons/food-icon.svg" alt="">
+                        </div>
+
+                        <p>Food Inventory</p>
+                    </div>
+
                     <p class="card-info">
                         <?php echo $total_food; ?>
                     </p>
                 </div>
                 <!-- Customers Summary -->
                 <div class="summary-card">
-                    <!-- icon -->
-                    <p>Customers</p>
+                    <div class="summary-name">
+                        <div class="icon">
+                            <img src="../../../assets/icons/customers-icon.svg" alt="">
+                        </div>
+
+                        <p>Customers</p>
+                    </div>
+
                     <p class="card-info">
                         <?php echo $total_customers; ?>
                     </p>
@@ -93,13 +109,24 @@ $pending_orders = $conn->query("
             </article>
             <article class="pending-orders">
                 <!-- Pending Orders Table -->
-                <h2>Pending Orders</h2>
+
+                <div class="pending-orders-name">
+                    <div class="icon">
+                        <img src="../../../assets/icons/pending-orders.svg" alt="">
+                    </div>
+                    <h2>Pending Orders</h2>
+                </div>
+
 
                 <!-- Create Order Button -->
-                <p><a href="createOrder.php">Create New Order</a></p>
+                <button onclick="window.location.href='createOrder.php'" class="outline create-order">
+                    <img src="../../../assets/icons/add-icon.svg" alt="">
+                    Create New Order
+                </button>
+
 
                 <table border="1" cellpadding="10" id="pending-table">
-                    <tr>
+                    <tr class="row-border">
                         <th>Customer</th>
                         <th>Food Items</th>
                         <th>Total Price</th>
@@ -132,12 +159,15 @@ $pending_orders = $conn->query("
                                 <td><?= implode(", ", $food_list) ?></td>
                                 <td>₱<?= number_format($order['total_price'], 2) ?></td>
                                 <td><?= $order['created_at'] ?></td>
-                                <td>
-
-                                    <a href="#" class="finish-order" data-id="<?= $order['order_id'] ?>">Finish</a> |
-
-                                    <a href="#" class="delete-order" data-id="<?= $order['order_id'] ?>">Delete</a>
-
+                                <td class="actions">
+                                    <a href="#" class="btn finish-order" data-id="<?= $order['order_id'] ?>">
+                                        <img src="../../../assets/icons/check-icon.svg" alt="">
+                                        Finish
+                                    </a>
+                                    <a href="#" class="btn delete-order" data-id="<?= $order['order_id'] ?>">
+                                        <img src="../../../assets/icons/trash-icon.svg" alt="">
+                                        Delete
+                                    </a>
                                 </td>
                             </tr>
 
