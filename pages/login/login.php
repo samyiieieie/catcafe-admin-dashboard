@@ -4,7 +4,7 @@ session_start();  // MUST be at the top
 include '../../database/db.php';
 
 // Abstract Values that will hold data later
-$message = ""; 
+$message = "";
 $username = "";
 $password = "";
 
@@ -54,13 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="loginstyle.css">
+    <link rel="stylesheet" href="../../css/loginstyle.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img class="logo" src="assets/logo.svg" alt="">
+            <img class="logo" src="../../assets/logo.svg" alt="">
             <div class="logo-text">
                 <p class="logo-bold">cozy beans</p>
                 <p class="logo-cursive">café</p>
@@ -73,22 +73,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p class="caveat">Your comfort in a cup… </p>
                 <p class="caveat">with a purr.</p>
             </div>
-            <img src="assets/white-overlay.png" class="overlay back" alt="">
+            <img src="../../assets/white-overlay.png" class="overlay back" alt="">
 
-            <img src="assets/white-overlay.png" class="overlay front" alt="">
+            <img src="../../assets/white-overlay.png" class="overlay front" alt="">
         </div>
         <div class="form">
-            <img class="logo-form" src="assets/logo.svg" alt="">
+            <img class="logo-form" src="../../assets/logo.svg" alt="">
             <div class="logo-text-big">
                 <p class="logo-bold">cozy beans</p>
                 <p class="logo-cursive">café</p>
             </div>
             <div class="login-text">
-                <img src="assets/left-paw.svg" alt="">
+                <img src="../../assets/left-paw.svg" alt="">
                 <h1>Login</h1>
-                <img src="assets/left-paw.svg" alt="">
+                <img src="../../assets/left-paw.svg" alt="">
             </div>
-            
+
             <form method="post" action="">
 
                 <!-- Error Handling with wrong credentials -->
@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
-    <script src="login.js"></script>
+    <script src="../../js/login.js"></script>
 </body>
 
 </html>
