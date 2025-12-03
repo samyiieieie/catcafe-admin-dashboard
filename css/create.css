@@ -163,37 +163,46 @@ p.caveat {
     margin-top: -40px;
 }
 
+/* Header */
 .page-title {
-    color: #822E2E;
-    font-family: Baloo;
+    display: flex;
+    align-items: center;     
+    justify-content: center; 
+    gap: 15px;
+    margin-bottom: 20px; 
+    width: 100%;
+}
+
+.title {
+    margin-top: 5px;
+    color: #822e2e;
+    font-family: "Baloo 2", sans-serif;
     font-size: 38px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700; /* Bolded for impact */
     line-height: normal;
+    margin: 0;
 }
 
-
-/* BACKGROUND BOX BEHIND FORM */
-.background-box {
-  background-color: #FFE7CB;
-  border: 3px solid #572908;
-  border-radius: 14px;
-  padding: 40px 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    color: #822e2e;
 }
+
 
 /* FORM CONTAINER */
 .form-container {
     background-color: #FFE7CB;     
     border: 3px solid #572908; 
-    border-radius: 14px;        
+    border-radius: 20px;        
     padding: 40px;                
     width: 100%;
     max-width: 420px;             
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    margin: 20px auto;            
+    margin: 20px auto;           
 }
 
 
