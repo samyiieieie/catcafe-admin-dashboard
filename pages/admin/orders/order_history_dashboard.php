@@ -34,7 +34,6 @@ $result = $conn->query($sql);
 <body>
 
     <h1>Finished Orders Dashboard</h1>
-    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
 
 
     <!-- Navigation -->

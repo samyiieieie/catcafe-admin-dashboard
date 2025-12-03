@@ -10,6 +10,7 @@ $password = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    // trim both impits
     $username = trim($_POST['username'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
@@ -19,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->execute();
     $result = $stmt->get_result();
 
+    // If there is more than one row in the admin table
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
 
@@ -46,17 +48,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="loginstyle.css">
+    <link rel="stylesheet" href="../../css/loginstyle.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img class="logo" src="assets/logo.svg" alt="">
+            <img class="logo" src="../../assets/logo.svg" alt="">
             <div class="logo-text">
                 <p class="logo-bold">cozy beans</p>
                 <p class="logo-cursive">café</p>
@@ -69,22 +72,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p class="caveat">Your comfort in a cup… </p>
                 <p class="caveat">with a purr.</p>
             </div>
-            <img src="assets/white-overlay.png" class="overlay back" alt="">
+            <img src="../../assets/white-overlay.png" class="overlay back" alt="">
 
-            <img src="assets/white-overlay.png" class="overlay front" alt="">
+            <img src="../../assets/white-overlay.png" class="overlay front" alt="">
         </div>
         <div class="form">
-            <img class="logo-form" src="assets/logo.svg" alt="">
+            <img class="logo-form" src="../../assets/logo.svg" alt="">
             <div class="logo-text-big">
                 <p class="logo-bold">cozy beans</p>
                 <p class="logo-cursive">café</p>
             </div>
             <div class="login-text">
-                <img src="assets/left-paw.svg" alt="">
+                <img src="../../assets/left-paw.svg" alt="">
                 <h1>Login</h1>
-                <img src="assets/left-paw.svg" alt="">
+                <img src="../../assets/left-paw.svg" alt="">
             </div>
+
             <form method="post" action="">
+
+                <!-- Error Handling with wrong credentials -->
+                <?php if (!empty($message)): ?>
+                    <p style="color: red; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                        <?= $message ?>
+                    </p>
+                <?php endif; ?>
+
                 <div class="inputs">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
@@ -93,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </form>
         </div>
     </div>
+    <script src="../../js/login.js"></script>
 </body>
 
 </html>

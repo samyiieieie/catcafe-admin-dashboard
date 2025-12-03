@@ -27,7 +27,7 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
 <body>
 
     <h1>Food Items</h1>
-    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
+    
 
 
     <!-- Navigation -->

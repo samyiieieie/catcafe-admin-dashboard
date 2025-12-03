@@ -27,7 +27,6 @@ $result = $conn->query($sql);
 <body>
 
     <h1>Customer Dashboard</h1>
-    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
 
 
     <!-- Navigation -->
