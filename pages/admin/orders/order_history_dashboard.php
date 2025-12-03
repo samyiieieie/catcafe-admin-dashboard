@@ -28,14 +28,13 @@ $result = $conn->query($sql);
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finished Orders Dashboard</title>
+    <link rel="stylesheet" href="../../../css/dashboard.css">
 </head>
 
 <body>
-
-    <h1>Finished Orders Dashboard</h1>
-
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -46,7 +45,7 @@ $result = $conn->query($sql);
             </div>
         </div>
         <div class="links">
-            <a href="admin_dashboard.php" class="nav-link">
+            <a href="../dashboard/admin_dashboard.php" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18">
                     <path d="M0 18V6L8 0L16 6V18H10V11H6V18H0Z" />
                 </svg>
@@ -83,46 +82,60 @@ $result = $conn->query($sql);
         </div>
     </nav>
 
-    <!-- Orders Table -->
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Customer</th>
-            <th>Food Items</th>
-            <th>Total Price</th>
-            <th>Order Date</th>
-            <th>Status</th>
-        </tr>
+    <main>
+        <section class="header">
+            <div class="icon">
+                <img src="../../../assets/icons/orders-icon.svg" alt="">
+            </div>
+            <h1>Finished Orders Dashboard</h1>
+        </section>
 
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($order = $result->fetch_assoc()): ?>
+        <section class="dashboard">
+            <article class="table">
+                <!-- Orders Table -->
+                <table border="1" cellpadding="10">
+                    <tr class="row-border">
+                        <th>Customer</th>
+                        <th>Food Items</th>
+                        <th>Total Price</th>
+                        <th>Order Date</th>
+                        <th>Status</th>
+                    </tr>
 
-                <!-- Fetch food items for this order -->
-                <?php
-                $order_id = $order['order_id'];
-                $items_res = $conn->query("SELECT f.name, oi.quantity FROM order_items oi
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($order = $result->fetch_assoc()): ?>
+
+                            <!-- Fetch food items for this order -->
+                            <?php
+                            $order_id = $order['order_id'];
+                            $items_res = $conn->query("SELECT f.name, oi.quantity FROM order_items oi
                                        JOIN food_items f ON oi.food_id = f.id
                                        WHERE oi.order_id = $order_id");
-                $food_list = [];
-                while ($item = $items_res->fetch_assoc()) {
-                    $food_list[] = htmlspecialchars($item['name']) . " (x" . $item['quantity'] . ")";
-                }
-                ?>
+                            $food_list = [];
+                            while ($item = $items_res->fetch_assoc()) {
+                                $food_list[] = htmlspecialchars($item['name']) . " (x" . $item['quantity'] . ")";
+                            }
+                            ?>
 
-                <tr>
-                    <td><?= htmlspecialchars($order['customer_name']) ?></td>
-                    <td><?= implode(", ", $food_list) ?></td>
-                    <td>₱<?= number_format($order['total_price'], 2) ?></td>
-                    <td><?= $order['created_at'] ?></td>
-                    <td><?= ucfirst($order['status']) ?></td>
-                </tr>
+                            <tr>
+                                <td><?= htmlspecialchars($order['customer_name']) ?></td>
+                                <td><?= implode(", ", $food_list) ?></td>
+                                <td>₱<?= number_format($order['total_price'], 2) ?></td>
+                                <td><?= $order['created_at'] ?></td>
+                                <td><?= ucfirst($order['status']) ?></td>
+                            </tr>
 
-            <?php endwhile; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="6">No finished orders found.</td>
-            </tr>
-        <?php endif; ?>
-    </table>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">No finished orders found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </article>
+        </section>
+
+    </main>
 
 </body>
 

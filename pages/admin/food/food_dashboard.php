@@ -21,6 +21,7 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Items Dashboard</title>
     <link rel="stylesheet" href="../../../css/dashboard.css">
 </head>
@@ -36,18 +37,18 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
             </div>
         </div>
         <div class="links">
-            <a href="admin_dashboard.php" class="nav-link">
+            <a href="../dashboard/admin_dashboard.php" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="18" viewBox="0 0 16 18">
                     <path d="M0 18V6L8 0L16 6V18H10V11H6V18H0Z" />
                 </svg>
                 Home
             </a>
-            <a href="../food/food_dashboard.php" class="nav-link">
+            <a href="food_dashboard.php" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
                     <path
                         d="M23.2636 30H25.5273C26.6727 30 27.6136 29.1136 27.75 27.9955L30 5.52273H23.1818V0H20.4955V5.52273H13.7182L14.1273 8.71364C16.4591 9.35455 18.6409 10.5136 19.95 11.7955C21.9136 13.7318 23.2636 15.7364 23.2636 19.0091V30ZM0 28.6364V27.2727H20.4955V28.6364C20.4955 29.3727 19.8818 30 19.0909 30H1.36364C0.613636 30 0 29.3727 0 28.6364ZM20.4955 19.0909C20.4955 8.18182 0 8.18182 0 19.0909H20.4955ZM0 21.8182H20.4545V24.5455H0V21.8182Z" />
                 </svg>
-                Food
+                Food Dashboard
             </a>
             <a href="../users/customer_dashboard.php" class="nav-link">
                 <svg xmlns="http://www.w3.org/2000/svg" width="37" height="30" viewBox="0 0 37 30">
@@ -74,46 +75,69 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
     </nav>
 
     <main>
-
-        <h1>Food Items</h1>
-
-        <!-- Search Bar -->
-        <form method="get" action="">
-            <input type="text" name="search" placeholder="Search by name" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit">Search</button>
-        </form>
+        <section class="header">
+            <div class="icon">
+                <img src="../../../assets/icons/food-icon.svg" alt="">
+            </div>
+            <h1>Food Inventory</h1>
+        </section>
 
 
-        <!-- Add new food item -->
-        <p><a href="addFood.php">Add New Food Item</a></p>
+        <section class="dashboard">
+            <article class="functions">
+                <!-- Search Bar -->
+                <form method="get" action="">
+                    <input type="text" name="search" placeholder="Search by name..."
+                        value="<?= htmlspecialchars($search) ?>">
+                    <button class="filled" type="submit">Search</button>
+                </form>
 
-        <!-- Food items table -->
-        <table border="1" cellpadding="10">
-            <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-            <?php if ($result->num_rows > 0): ?>
-                <?php while ($food = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($food['name']); ?></td>
-                        <td><?php echo htmlspecialchars($food['description']); ?></td>
-                        <td>₱<?php echo number_format($food['price'], 2); ?></td>
-                        <td>
-                            <a href="editFood.php?id=<?php echo $food['id']; ?>">Edit</a> |
-                            <a href="deleteFood.php?id=<?php echo $food['id']; ?>"
-                                onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                        </td>
+
+                <!-- Add new food item -->
+                <button onclick="window.location.href='addFood.php'" class="outline create-order">
+                    <img src="../../../assets/icons/add-icon.svg" alt="">
+                    Add New Food Item
+                </button>
+
+            </article>
+
+            <article class="table">
+                <!-- Food items table -->
+                <table border="1" cellpadding="10">
+                    <tr class="row-border">
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Actions</th>
                     </tr>
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="5">No food items found.</td>
-                </tr>
-            <?php endif; ?>
-        </table>
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($food = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($food['name']); ?></td>
+                                <td><?php echo htmlspecialchars($food['description']); ?></td>
+                                <td>₱<?php echo number_format($food['price'], 2); ?></td>
+                                <td class="actions">
+                                    <a class="btn outline" href="editFood.php?id=<?php echo $food['id']; ?>">
+                                        <img src="../../../assets/icons/edit-icon.svg" alt="">
+                                        Edit
+                                    </a>
+                                    <a class="btn filled" href="deleteFood.php?id=<?php echo $food['id']; ?>"
+                                        onclick="return confirm('Are you sure you want to delete this item?');">
+                                        <img src="../../../assets/icons/trash-icon.svg" alt="">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5">No food items found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </article>
+        </section>
+
     </main>
 
 

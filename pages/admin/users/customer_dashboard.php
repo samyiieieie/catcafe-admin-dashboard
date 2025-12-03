@@ -21,14 +21,13 @@ $result = $conn->query($sql);
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="../../../css/dashboard.css">
 </head>
 
 <body>
-
-    <h1>Customer Dashboard</h1>
-
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -75,45 +74,74 @@ $result = $conn->query($sql);
             </a>
         </div>
     </nav>
-    <!-- Search -->
-    <form method="get" action="">
-        <input type="text" name="search" placeholder="Search by name" value="<?= htmlspecialchars($search) ?>">
-        <button type="submit">Search</button>
-    </form>
 
-    <!-- Add new customer -->
-    <p><a href="createUser.php">Add New Customer</a></p>
+    <main>
+        <section class="header">
+            <div class="icon">
+                <img src="../../../assets/icons/customers-icon.svg" alt="">
+            </div>
+            <h1>Customer Dashboard</h1>
+        </section>
 
-    <!-- Customers table -->
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Contact Number</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
+        <section class="dashboard">
+            <article class="functions">
+                <!-- Search -->
+                <form method="get" action="">
+                    <input type="text" name="search" placeholder="Search by name..."
+                        value="<?= htmlspecialchars($search) ?>">
+                    <button class="filled" type="submit">Search</button>
+                </form>
 
-        <?php if ($result->num_rows > 0): ?>
-            <?php while ($customer = $result->fetch_assoc()): ?>
-                <tr>
-                    <td><?= htmlspecialchars($customer['name']) ?></td>
-                    <td><?= $customer['age'] ?></td>
-                    <td><?= htmlspecialchars($customer['contact_number']) ?></td>
-                    <td><?= htmlspecialchars($customer['current_address']) ?></td>
-                    <td>
-                        <a href="editUser.php?id=<?= $customer['id'] ?>">Edit</a> |
-                        <a href="deleteUser.php?id=<?= $customer['id'] ?>"
-                            onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <tr>
-                <td colspan="6">No customers found.</td>
-            </tr>
-        <?php endif; ?>
-    </table>
+                <!-- Add new customer -->
+                <button onclick="window.location.href='createUser.php'" class="outline create-order">
+                    <img src="../../../assets/icons/add-icon.svg" alt="">
+                    Add New Customer
+                </button>
+            </article>
+
+            <article class="table">
+                <!-- Customers table -->
+                <table border="1" cellpadding="10">
+                    <tr class="row-border">
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Contact Number</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+
+                    <?php if ($result->num_rows > 0): ?>
+                        <?php while ($customer = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($customer['name']) ?></td>
+                                <td><?= $customer['age'] ?></td>
+                                <td><?= htmlspecialchars($customer['contact_number']) ?></td>
+                                <td><?= htmlspecialchars($customer['current_address']) ?></td>
+                                <td class="actions">
+                                    <a class="btn outline" href="editUser.php?id=<?= $customer['id'] ?>">
+                                        <img src="../../../assets/icons/edit-icon.svg" alt="">
+                                        Edit
+                                    </a>
+                                    <a class="btn filled" href="deleteUser.php?id=<?= $customer['id'] ?>"
+                                        onclick="return confirm('Are you sure you want to delete this customer?');">
+                                        <img src="../../../assets/icons/trash-icon.svg" alt="">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">No customers found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </article>
+        </section>
+
+
+    </main>
+
 
 </body>
 

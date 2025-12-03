@@ -208,6 +208,7 @@ a.btn {
   justify-content: center;
   align-items: center;
   width: max-content;
+  gap: 4px;
 }
 
 /* BODY */
