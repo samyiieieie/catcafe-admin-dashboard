@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caveat:wght@400..700&family=Cedarville+Cursive&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* GENERAL */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff7eb;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: bold;
+  font-family: "Baloo 2", sans-serif;
+  color: #822e2e;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+/* NAVBAR */
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
+  height: 60px;
+  padding: 0 20px;
+  box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  z-index: 1;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+a.nav-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  color: #822e2e;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+a.nav-link svg {
+  fill: currentColor;
+  max-height: 16px;
+  width: auto;
+}
+
+a.nav-link:hover {
+  background-color: #822e2e;
+  color: #fcead0;
+  cursor: pointer;
+}
+
+a.nav-link-logout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 8px;
+  background-color: #822e2e;
+  color: #fcead0;
+  text-decoration: none;
+  border-radius: 10px;
+}
+
+a.nav-link-logout svg {
+  fill: currentColor;
+  max-height: 16px;
+  width: auto;
+}
+
+a.nav-link-logout:hover {
+  background-color: #980909;
+  color: #fcead0;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+img.logo {
+  aspect-ratio: 1;
+  height: 35px;
+}
+
+p.logo-bold {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  color: #ac5841;
+  font-size: 20px;
+}
+
+p.logo-cursive {
+  font-family: "Cedarville Cursive", serif;
+  color: #822e2e;
+  font-size: 20px;
+}
+
+p.caveat {
+  font-family: "Caveat", sans-serif;
+  color: #ac5841;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.caveat-text {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 100px;
+  bottom: 80px;
+}
+
+/* BUTTON STYLES */
+button {
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  padding: 6px 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 8px;
+}
+
+button.outline {
+  border: 1px solid #822e2e;
+  color: #822e2e;
+  background-color: #fff;
+}
+
+button.filled {
+  border: 1px solid #822e2e;
+  color: #fff;
+  background-color: #822e2e;
+}
+
+button.filled.full {
+  width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: #5d2121;
+  color: #fff;
+}
+
+/* BODY */
+main {
+  padding: 30px 50px;
+}
+
+/* LINKS */
+a {
+  color: #822e2e;
+  font-family: "Baloo 2", sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+a:hover {
+  color: #5d2121;
+}

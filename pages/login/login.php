@@ -54,13 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../../css/loginstyle.css">
+    <link rel="stylesheet" href="../../css/login.css">
 </head>
 
 <body>
     <nav class="navbar">
         <div class="logo">
-            <img class="logo" src="../../assets/logo.svg" alt="">
+            <img class="logo" src="../../assets/.logo.svg" alt="">
             <div class="logo-text">
                 <p class="logo-bold">cozy beans</p>
                 <p class="logo-cursive">café</p>
