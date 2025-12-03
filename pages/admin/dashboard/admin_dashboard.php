@@ -40,92 +40,118 @@ $pending_orders = $conn->query("
 
 <body>
 
-    <!-- Header + Welcome Message with name column from DB-->
-    <h1>Admin Dashboard</h1>
-    <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
+    <main>
+        <!-- Header -->
+        <h1>Admin Dashboard</h1>
+        <section class="tables">
+            <article class="summary">
+                <!-- Welcome Message with name column from DB-->
+                <h2>Welcome,
+                    <span class="name">
+                        <?php echo $_SESSION['name']; ?>
+                    </span>
+                    !
+                </h2>
+                <!-- Summary Table -->
+                <!-- Sales Summary -->
+                <div class="sales">
+                    <div class="summary-name">
+                        <div class="icon">
+                            <img src="../../../assets/icons/sales-icon.svg" alt="">
+                        </div>
+                        <p>Total Sales</p>
+                    </div>
+                    <p class="card-info">
+                        ₱<?php echo $total_sales ?? 0; ?>
+                    </p>
+                </div>
 
-    <!-- Navigation Bar-->
-    <p id="nav-bar">
-        <a href="admin_dashboard.php">Dashboard</a>
-        <a href="../food/food_dashboard.php">Food Items</a>
-        <a href="../users/customer_dashboard.php">Customers</a>
-        <a href="../orders/order_history_dashboard.php">Finished Orders</a>
-        <a href="../../login/logout.php">Logout</a>
-    </p>
+                <!-- Orders Summary -->
+                <div class="summary-card">
+                    <!-- icon -->
+                    <p>Orders</p>
+                    <p class="card-info">
+                        <?php echo $total_orders; ?>
+                    </p>
+                </div>
+                <!-- Food Summary -->
+                <div class="summary-card">
+                    <!-- icon -->
+                    <p>Food Inventory</p>
+                    <p class="card-info">
+                        <?php echo $total_food; ?>
+                    </p>
+                </div>
+                <!-- Customers Summary -->
+                <div class="summary-card">
+                    <!-- icon -->
+                    <p>Customers</p>
+                    <p class="card-info">
+                        <?php echo $total_customers; ?>
+                    </p>
+                </div>
+            </article>
+            <article class="pending-orders">
+                <!-- Pending Orders Table -->
+                <h2>Pending Orders</h2>
 
-    <!-- Summary Table -->
-    <table border="1" cellpadding="10" id="summary-table">
-        <tr>
-            <th>Total Customers</th>
-            <th>Total Food Items</th>
-            <th>Total Orders</th>
-            <th>Total Sales</th>
-        </tr>
-        <tr>
-            <td><?php echo $total_customers; ?></td>
-            <td><?php echo $total_food; ?></td>
-            <td><?php echo $total_orders; ?></td>
-            <td>₱<?php echo $total_sales ?? 0; ?></td>
-        </tr>
-    </table>
+                <!-- Create Order Button -->
+                <p><a href="createOrder.php">Create New Order</a></p>
 
-        <!-- Pending Orders Table -->
-        <h2>Pending Orders</h2>
+                <table border="1" cellpadding="10" id="pending-table">
+                    <tr>
+                        <th>Customer</th>
+                        <th>Food Items</th>
+                        <th>Total Price</th>
+                        <th>Order Date</th>
+                        <th>Actions</th>
+                    </tr>
 
-        <!-- Create Order Button -->
-        <p><a href="createOrder.php">Create New Order</a></p>
+                    <?php if ($pending_orders->num_rows > 0): ?>
+                        <?php while ($order = $pending_orders->fetch_assoc()): ?>
 
-        <table border="1" cellpadding="10" id="pending-table">
-            <tr>
-                <th>Customer</th>
-                <th>Food Items</th>
-                <th>Total Price</th>
-                <th>Order Date</th>
-                <th>Actions</th>
-            </tr>
+                            <?php
 
-            <?php if ($pending_orders->num_rows > 0): ?>
-                <?php while ($order = $pending_orders->fetch_assoc()): ?>
-
-                    <?php
-
-                    // Fetch food items for this order
-                    $order_id = $order['order_id'];
-                    $items_res = $conn->query("SELECT f.name, oi.quantity 
+                            // Fetch food items for this order
+                            $order_id = $order['order_id'];
+                            $items_res = $conn->query("SELECT f.name, oi.quantity 
                                         FROM order_items oi
                                         JOIN food_items f ON oi.food_id = f.id
                                         WHERE oi.order_id = $order_id");
 
-                    // store into an array
-                    $food_list = [];
+                            // store into an array
+                            $food_list = [];
 
-                    // store item name + food name + the price (* quantity)
-                    while ($item = $items_res->fetch_assoc()) {
-                        $food_list[] = htmlspecialchars($item['name']) . " (x" . $item['quantity'] . ")";
-                    }
-                    ?>
-                    <tr>
-                        <td><?= htmlspecialchars($order['customer_name']) ?></td>
-                        <td><?= implode(", ", $food_list) ?></td>
-                        <td>₱<?= number_format($order['total_price'], 2) ?></td>
-                        <td><?= $order['created_at'] ?></td>
-                        <td>
+                            // store item name + food name + the price (* quantity)
+                            while ($item = $items_res->fetch_assoc()) {
+                                $food_list[] = htmlspecialchars($item['name']) . " (x" . $item['quantity'] . ")";
+                            }
+                            ?>
+                            <tr>
+                                <td><?= htmlspecialchars($order['customer_name']) ?></td>
+                                <td><?= implode(", ", $food_list) ?></td>
+                                <td>₱<?= number_format($order['total_price'], 2) ?></td>
+                                <td><?= $order['created_at'] ?></td>
+                                <td>
 
-                            <a href="#" class="finish-order" data-id="<?= $order['order_id'] ?>">Finish</a> |
+                                    <a href="#" class="finish-order" data-id="<?= $order['order_id'] ?>">Finish</a> |
 
-                            <a href="#" class="delete-order" data-id="<?= $order['order_id'] ?>">Delete</a>
+                                    <a href="#" class="delete-order" data-id="<?= $order['order_id'] ?>">Delete</a>
 
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
 
-                <?php endwhile; ?>
-            <?php else: ?>
-                <tr>
-                    <!-- Display this if there are no orders in the table -->
-                    <td colspan="5">No pending orders.</td>
-                </tr>
-            <?php endif; ?>
-        </table>
+                        <?php endwhile; ?>
+                    <?php else: ?>
+                        <tr>
+                            <!-- Display this if there are no orders in the table -->
+                            <td colspan="5">No pending orders.</td>
+                        </tr>
+                    <?php endif; ?>
+                </table>
+            </article>
+        </section>
+
 
         <script src="../../../js/admin_dashboard.js"></script>
     </main>
