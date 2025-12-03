@@ -21,6 +21,7 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food Items Dashboard</title>
     <link rel="stylesheet" href="../../../css/dashboard.css">
 </head>
@@ -78,7 +79,7 @@ $result = $conn->query("SELECT * FROM food_items $search_sql ORDER BY id DESC");
             <div class="icon">
                 <img src="../../../assets/icons/food-icon.svg" alt="">
             </div>
-            <h1>Food Items</h1>
+            <h1>Food Inventory</h1>
         </section>
 
 
