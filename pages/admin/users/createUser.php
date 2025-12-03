@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </form>
 
 <br>
-<a href="customers_dashboard.php">Back to Customer Dashboard</a>
+<a href="customer_dashboard.php">Back to Customer Dashboard</a>
 
 </body>
 </html>
