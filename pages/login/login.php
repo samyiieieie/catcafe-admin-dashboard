@@ -4,7 +4,7 @@ session_start();  // MUST be at the top
 include '../../database/db.php';
 
 // Abstract Values that will hold data later
-$message = ""; // access or not
+$message = ""; 
 $username = "";
 $password = "";
 
@@ -88,7 +88,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h1>Login</h1>
                 <img src="assets/left-paw.svg" alt="">
             </div>
+            
             <form method="post" action="">
+
+                <!-- Error Handling with wrong credentials -->
+                <?php if (!empty($message)): ?>
+                    <p style="color: red; font-weight: bold; text-align: center; margin-bottom: 10px;">
+                        <?= $message ?>
+                    </p>
+                <?php endif; ?>
+
                 <div class="inputs">
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
