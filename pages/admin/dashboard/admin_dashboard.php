@@ -44,6 +44,8 @@ $pending_orders = $conn->query("
     <h3>Welcome, <?php echo $_SESSION['name']; ?></h3>
 
     <!-- Navigation Bar-->
+    <div class="navbar">
+    <div class = "nav-links">
     <p id="nav-bar">
         <a href="admin_dashboard.php">Dashboard</a>
         <a href="../food/food_dashboard.php">Food Items</a>
@@ -51,6 +53,8 @@ $pending_orders = $conn->query("
         <a href="../orders/order_history_dashboard.php">Finished Orders</a>
         <a href="../../login/logout.php">Logout</a>
     </p>
+</div>
+    </div>
 
     <!-- Summary Table -->
     <table border="1" cellpadding="10" id="summary-table">

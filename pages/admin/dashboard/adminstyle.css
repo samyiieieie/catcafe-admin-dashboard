@@ -1,0 +1,125 @@
+/* Admin Dashboard Styles */
+body {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    background: #f5ebe0;
+}
+
+/* NAVIGATION BAR */
+.navbar {
+    background: #ffffff;
+    padding: 12px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #d8c7b3;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #5a4634;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #8b3a39;
+}
+
+/* PAGE LAYOUT */
+.container {
+    padding: 40px 60px;
+}
+
+h1 {
+    color: #5a4634;
+    font-size: 36px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: 350px auto;
+    gap: 30px;
+}
+
+/* SUMMARY CARDS */
+.card {
+    background: #ffffff;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 18px;
+    border: 2px solid #d8c7b3;
+}
+
+.card.total-sales {
+    background: #8b3a39;
+    color: white;
+}
+
+.card-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-value {
+    font-size: 42px;
+    font-weight: 700;
+    color: #5a4634;
+}
+
+.total-sales .card-value {
+    color: white;
+}
+
+/* PENDING ORDERS */
+.pending-box {
+    background: #ffffff;
+    border-radius: 15px;
+    border: 2px solid #d8c7b3;
+    padding: 30px;
+}
+
+.pending-box h2 {
+    color: #5a4634;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    font-weight: 600;
+    color: #5a4634;
+    border-bottom: 2px solid #d8c7b3;
+}
+
+td {
+    border-bottom: 1px solid #e6d8c8;
+    color: #4b3a2f;
+}
+
+/* ACTION ICONS */
+.action-btn {
+    cursor: pointer;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.finish { color: #4caf50; }
+.delete { color: #d32f2f; }

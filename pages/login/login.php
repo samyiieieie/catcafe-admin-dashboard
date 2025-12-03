@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $result->fetch_assoc();
 
         // Check password (plain text)
-        if ($password === $user['password']) {
+        if (password_verify($password, $user['password'])) {
 
             // Store User Data in session
             $_SESSION['id'] = $user['id'];
@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 
 <head>
-    <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
@@ -91,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" name="username" placeholder="Username" required>
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
-                <button class="filled full" type="submit">Login</button>
+                <button class="filled full" type="submit" name="login">Login</button>
             </form>
         </div>
     </div>
